@@ -5,7 +5,7 @@
 	<year>1983</year>
 	<manufacturer>Bally Midway</manufacturer>
 	<category>Action</category>
-	<rbf>mcr3</rbf>
+	<rbf>tapper-spritefix</rbf>
 	<setname>tapper</setname>
 	<switches default="FF 00">
 		<dip bits="2"    name="Demo Sounds" ids="Off,On"/>

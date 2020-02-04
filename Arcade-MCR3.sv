@@ -112,9 +112,10 @@ assign HDMI_ARY = status[1] ? 8'd9  : (status[2] | landscape) ? 8'd3 : 8'd4;
 localparam CONF_STR = {
 	"A.TAPPER;;",
 	"H0O1,Aspect Ratio,Original,Wide;",
-	"H2H0O2,Orientation,Vert,Horz;",
+	//"H2H0O2,Orientation,Vert,Horz;",
 	"O35,Scandoubler Fx,None,HQ2x,CRT 25%,CRT 50%,CRT 75%;",
 	"O6,Audio,Mono,Stereo;",
+	"OD,Video Mode,Interlaced,Progressive;",
 	"-;",
 	"h1O7,Rotate,Buttons,Spinner;",
 	"h1-;",
@@ -445,7 +446,7 @@ wire [2:0] b;
 
 wire no_rotate = status[2] | direct_video | landscape;
  
-arcade_video #(512,240,9) arcade_video
+arcade_video #(512,480,9) arcade_video
 (
 	.*,
 	.clk_video(clk_sys),
@@ -454,7 +455,7 @@ arcade_video #(512,240,9) arcade_video
 	.VBlank(vblank),
 	.HSync(hs),
 	.VSync(vs),
-
+	.no_rotate(1),
 	.rotate_ccw(0),
 	.fx(status[5:3])
 );
@@ -478,8 +479,7 @@ Tapper Tapper
 	.video_vs(vs),
 	.video_ce(ce_pix),
 	.video_hflip(mod_dotron),
-	.tv15Khz_mode(1),
-	//.separate_audio(1'b1),
+	.tv15Khz_mode(~status[13]),
 	.separate_audio(status[6]),
 	.audio_out_l(audio_l),
 	.audio_out_r(audio_r),
