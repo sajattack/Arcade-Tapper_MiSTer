@@ -13,6 +13,11 @@
 		<dip bits="7"    name="Coin Meters" ids="1,2"/>
 		<dip bits="8"    name="Service" ids="Off,On"/>
 	</switches>
+    <buttons names="Fill,-,-,-,-,-,Start 1P,Start 2P,Coin" default="A,Start,Select,R"/>
+	<rom index="1">
+		<part>00</part>
+	</rom>
+
 	<rom index="1">
 		<part>0</part>
 	</rom>
